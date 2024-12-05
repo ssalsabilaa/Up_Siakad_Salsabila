@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_siakad',
-    'master'
+    'master',
+    'akademik',
 ]
 
 MIDDLEWARE = [
@@ -82,17 +83,9 @@ WSGI_APPLICATION = 'django_siakad.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_siakad",
-        "USER": "anz",
-        "PASSWORD": "adminkeren",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -173,6 +166,33 @@ UNFOLD = {
                         "link": reverse_lazy("admin:index"),
                         # "badge": "new",
                         "permission": lambda request: request.user.is_superuser,
+                    },
+                ]
+            },
+            {
+                "title": "Akademik",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                     {
+                        "title": "Tahun Akademik",
+                        "icon": "school",
+                        "link": reverse_lazy("admin:akademik_tahunakademik_changelist"),
+                    },
+                    {
+                        "title": "Mata Kuliah",
+                        "icon": "checklist",
+                        "link": reverse_lazy("admin:akademik_matakuliah_changelist"),
+                    },
+                    {
+                        "title": "Jadwal",
+                        "icon": "schedule",
+                        "link": reverse_lazy("admin:akademik_jadwal_changelist"),
+                    },
+                    {
+                        "title": "KRS",
+                        "icon": "cast_for_education",
+                        "link": reverse_lazy("admin:akademik_krs_changelist"),
                     },
                 ]
             },
